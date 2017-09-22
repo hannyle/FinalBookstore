@@ -16,6 +16,9 @@ public class BookStoreController {
 	@Autowired
 	private BookRepository repository; 
 	
+	@Autowired
+	private CategoryRepository crepository;
+	
     @RequestMapping(value="/booklist")
     public String studentList(Model model) {	
         model.addAttribute("books", repository.findAll());
@@ -25,6 +28,7 @@ public class BookStoreController {
     @RequestMapping(value = "/add")
     public String addBook(Model model){
     	model.addAttribute("book", new Book());
+    	model.addAttribute("categories", crepository.findAll());
         return "addbook";
     }     
     
