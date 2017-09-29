@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hh.server.Bookstore.domain.Book;
-import fi.haagahelia.course.domain.Student;
 import fi.hh.server.Bookstore.domain.*;
 import fi.hh.server.Bookstore.domain.BookRepository;
 
@@ -35,7 +34,13 @@ public class BookStoreController {
     public @ResponseBody List<Book> bookListRest() {	
         return (List<Book>) repository.findAll();
     }    
-
+   
+ // RESTful service to get book by id
+    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {	
+    	return repository.findOne(bookId);
+    }   
+    
     @RequestMapping(value = "/add")
     public String addBook(Model model){
     	model.addAttribute("book", new Book());
