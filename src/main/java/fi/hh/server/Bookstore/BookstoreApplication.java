@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import fi.hh.server.Bookstore.domain.User;
+import fi.hh.server.Bookstore.domain.UserRepository;
 import fi.hh.server.Bookstore.domain.*;
 import fi.hh.server.Bookstore.domain.BookRepository;
 import fi.hh.server.Bookstore.domain.Category;
@@ -24,7 +26,7 @@ public class BookstoreApplication {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 		@Bean
-		public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository crepository) {
+		public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 			return (args) -> {
 				log.info("save a couple of books");
 				
@@ -35,7 +37,11 @@ public class BookstoreApplication {
 				
 				//repository.save(new Book("Title 1", "Author 1", 1999, "12121", 5, crepository.findByCategoryName("Horror").get(0)));
 				//repository.save(new Book());	
-				
+				// Create users: admin/admin user/user
+				User user1 = new User("user", "$2a$06$Y5B/lHICNa.rkUkPd5wBiusAnIoRRy0uyZuL7YzYSY6777eM/q8tW", "USER");
+				User user2 = new User("admin", "$2a$06$fHSgh0YAj8/FFyyYkTlY/eyHGPO31ft.H3RS7kt1Zph7JqcYoInvq", "ADMIN");
+				urepository.save(user1);
+				urepository.save(user2);
 				
 				
 				log.info("fetch all books");
