@@ -35,7 +35,7 @@ public class BookstoreApplication {
 				crepository.save(new Category("Thriller"));
 				
 				
-				//repository.save(new Book("Title 1", "Author 1", 1999, "12121", 5, crepository.findByCategoryName("Horror").get(0)));
+				repository.save(new Book("Title 1", "Author 1", 1999, "12121", 5, crepository.findByCategoryName("Horror").get(0)));
 				//repository.save(new Book());	
 				// Create users: admin/admin user/user
 				User user1 = new User("user", "$2a$06$Y5B/lHICNa.rkUkPd5wBiusAnIoRRy0uyZuL7YzYSY6777eM/q8tW", "USER");
